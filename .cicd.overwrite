@@ -1,0 +1,13 @@
+---
+
+# Generic
+generic:
+  role: ansible-role-apptainer
+  role_short: apptainer
+  role_description: |
+    Installs apptainer (fka singularity)
+  collections: []
+
+molecule:
+  requirements:
+    roles_extra: []

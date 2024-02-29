@@ -1,0 +1,11 @@
+---
+
+# APT repository location
+apptainer_apt_url: https://ppa.launchpadcontent.net/apptainer/ppa/ubuntu
+
+# APT signing key
+apptainer_apt_key: "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf6b0f5193d4f3301ef491ff0afe36534fc6218ae"
+
+# Lsit of APT packages
+apptainer_packages:
+  - apptainer
