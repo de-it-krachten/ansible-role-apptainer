@@ -1,0 +1,40 @@
+---
+
+- name: Install apptainer (RedHat-family)
+  when: ansible_os_family == 'RedHat'
+  block:
+
+    - name: Install apptainer
+      ansible.builtin.package:
+        name: "{{ apptainer_packages }}"
+        state: present
+
+- name: Install apptainer (Ubuntu)
+  when: ansible_distribution == 'Ubuntu'
+  block:
+
+    - name: Import APT key
+      ansible.builtin.apt_key:
+        url: "{{ apptainer_apt_key }}"
+        validate_certs: no
+      when: apptainer_apt_key is defined
+
+    - name: Add official repository
+      ansible.builtin.apt_repository:
+        repo: >
+          deb {{ apptainer_apt_url }} {{ ansible_distribution_release }} main
+        filename: "apptainer"
+        state: present
+      register: _apt_repo
+
+    - name: Update package list (APT)  # noqa no-handler
+      ansible.builtin.apt:
+        force_apt_get: yes
+        update_cache: yes
+        cache_valid_time: 0
+      when: _apt_repo.changed
+
+    - name: Install apptainer
+      ansible.builtin.package:
+        name: "{{ apptainer_packages }}"
+        state: present
