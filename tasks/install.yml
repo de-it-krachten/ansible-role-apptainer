@@ -1,5 +1,14 @@
 ---
 
+- name: Install apptainer (RedHat-family)
+  when: ansible_os_family == 'RedHat'
+  block:
+
+    - name: Install apptainer
+      ansible.builtin.package:
+        name: "{{ apptainer_packages }}"
+        state: present
+
 - name: Install apptainer (Ubuntu)
   when: ansible_distribution == 'Ubuntu'
   block:

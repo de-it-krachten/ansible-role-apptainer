@@ -29,10 +29,6 @@ Supported platforms
 - OracleLinux 9
 - AlmaLinux 8
 - AlmaLinux 9
-- SUSE Linux Enterprise 15<sup>1</sup>
-- openSUSE Leap 15
-- Debian 11 (Bullseye)
-- Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
 - Fedora 37
@@ -47,6 +43,13 @@ Note:
 
 </pre></code>
 
+### defaults/family-RedHat.yml
+<pre><code>
+# List of RPM packages
+apptainer_packages:
+  - apptainer
+</pre></code>
+
 ### defaults/Ubuntu.yml
 <pre><code>
 # APT repository location
@@ -55,7 +58,7 @@ apptainer_apt_url: https://ppa.launchpadcontent.net/apptainer/ppa/ubuntu
 # APT signing key
 apptainer_apt_key: "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf6b0f5193d4f3301ef491ff0afe36534fc6218ae"
 
-# Lsit of APT packages
+# List of APT packages
 apptainer_packages:
   - apptainer
 </pre></code>

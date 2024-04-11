@@ -8,6 +8,28 @@ generic:
     Installs apptainer (fka singularity)
   collections: []
 
+# Supported platforms
+platforms:
+  sles15:
+    ci: false
+    supported: false
+  opensuse15:
+    ci: false
+    supported: false
+  opensusetumbleweed15:
+    ci: false
+    supported: false
+  debian10:
+    ci: false
+    supported: false
+  debian11:
+    ci: false
+    supported: false
+  debian12:
+    ci: false
+    supported: false
+
+# Molecule
 molecule:
   requirements:
     roles_extra: []

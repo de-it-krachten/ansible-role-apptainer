@@ -1,0 +1,5 @@
+---
+
+# List of RPM packages
+apptainer_packages:
+  - apptainer
