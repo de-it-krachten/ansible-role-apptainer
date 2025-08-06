@@ -1,3 +1,13 @@
+# [1.3.0](https://github.com/de-it-krachten/ansible-role-apptainer/compare/v1.2.0...v1.3.0) (2025-08-06)
+
+
+### Features
+
+* Add support for AlmaLinux 10 ([1b3e8c6](https://github.com/de-it-krachten/ansible-role-apptainer/commit/1b3e8c697b344cffd1dbcdba1aa4064a4716d79e))
+* Add support for OracleLinux 10 ([4a39540](https://github.com/de-it-krachten/ansible-role-apptainer/commit/4a395402465b49b05fb216f4dd63c9ed311d452e))
+* Add support for Red Hat Enterprise Linux 10 ([f0d6552](https://github.com/de-it-krachten/ansible-role-apptainer/commit/f0d655210c5f763a9595668e307e9987d3ca1072))
+* Add support for RockyLinux 10 ([129065b](https://github.com/de-it-krachten/ansible-role-apptainer/commit/129065b18d860a442c64073c04460e334caa366e))
+
 # [1.2.0](https://github.com/de-it-krachten/ansible-role-apptainer/compare/v1.1.0...v1.2.0) (2024-12-29)
 
 
