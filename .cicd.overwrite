@@ -28,6 +28,9 @@ platforms:
   debian12:
     ci: false
     supported: false
+  debian13:
+    ci: false
+    supported: false
 
 # Molecule
 molecule:
