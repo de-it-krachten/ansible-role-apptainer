@@ -12,40 +12,49 @@
 - name: Install apptainer (Ubuntu)
   when: ansible_distribution == 'Ubuntu'
   vars:
-    apptainer_apt_keyfile_tmp: "/tmp/{{ apptainer_apt_keyfile | basename }}"
+    apptainer_tmp1: "/tmp/{{ apptainer_apt_keyfile | basename }}1"
+    apptainer_tmp2: "/tmp/{{ apptainer_apt_keyfile | basename }}2"
   block:
 
     - name: Download the GPG key
       ansible.builtin.get_url:
         url: "{{ apptainer_apt_key }}"
-        dest: "{{ apptainer_apt_keyfile_tmp }}"
+        dest: "{{ apptainer_tmp1 }}"
         owner: root
         group: root
         mode: "0644"
+      tags: molecule-idempotence-notest
 
     - name: Convert APT key into binary format
       ansible.builtin.command:
         cmd: >-
-          gpg
-          --batch
-          --yes
-          --no-tty
-          --dearmor
-          -o {{ apptainer_apt_keyfile }}
-          {{ apptainer_apt_keyfile_tmp }}
-      tags: molecule-idempotence-notest
+          gpg --batch --yes --no-tty --dearmor -o {{ apptainer_tmp2 }} {{ apptainer_tmp1 }}
+      changed_when: false
+
+    - name: Update APT key
+      ansible.builtin.copy:
+        src: "{{ apptainer_tmp2 }}"
+        dest: "{{ apptainer_apt_keyfile }}"
+        mode: "0644"
+        remote_src: true
 
     - name: Add official repository
-      ansible.builtin.apt_repository:
-        repo: >
+      ansible.builtin.copy:
+        content: >
           deb
           [arch=amd64,arm64 signed-by={{ apptainer_apt_keyfile }}]
           {{ apptainer_apt_url }}
           {{ ansible_distribution_release }}
           main
-        filename: "apptainer"
-        state: present
+        dest: /etc/apt/sources.list.d/apptainer.list
+        mode: "0644"
       register: _apt_repo
+
+    - name: Delete temporary files
+      ansible.builtin.file:
+        path: "{{ apptainer_tmp2 }}"
+        state: absent
+      changed_when: false
 
     - name: Update package list (APT)  # noqa no-handler
       ansible.builtin.apt:

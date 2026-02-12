@@ -31,14 +31,14 @@ Supported platforms
 - AlmaLinux 8
 - AlmaLinux 9
 - AlmaLinux 10
-- Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
 - Ubuntu 24.04 LTS
-- Fedora 41
 - Fedora 42
+- Fedora 43
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
+
 
 ## Role Variables
 ### defaults/main.yml
@@ -60,6 +60,9 @@ apptainer_apt_url: https://ppa.launchpadcontent.net/apptainer/ppa/ubuntu
 
 # APT signing key
 apptainer_apt_key: "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf6b0f5193d4f3301ef491ff0afe36534fc6218ae"
+
+# APT signing key
+apptainer_apt_keyfile: /etc/apt/trusted.gpg.d/apptainer-ubuntu-ppa.gpg
 
 # List of APT packages
 apptainer_packages:
