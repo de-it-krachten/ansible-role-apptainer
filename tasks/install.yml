@@ -11,18 +11,38 @@
 
 - name: Install apptainer (Ubuntu)
   when: ansible_distribution == 'Ubuntu'
+  vars:
+    apptainer_apt_keyfile_tmp: "/tmp/{{ apptainer_apt_keyfile | basename }}"
   block:
 
-    - name: Import APT key
-      ansible.builtin.apt_key:
+    - name: Download the GPG key
+      ansible.builtin.get_url:
         url: "{{ apptainer_apt_key }}"
-        validate_certs: no
-      when: apptainer_apt_key is defined
+        dest: "{{ apptainer_apt_keyfile_tmp }}"
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Convert APT key into binary format
+      ansible.builtin.command:
+        cmd: >-
+          gpg
+          --batch
+          --yes
+          --no-tty
+          --dearmor
+          -o {{ apptainer_apt_keyfile }}
+          {{ apptainer_apt_keyfile_tmp }}
+      tags: molecule-idempotence-notest
 
     - name: Add official repository
       ansible.builtin.apt_repository:
         repo: >
-          deb {{ apptainer_apt_url }} {{ ansible_distribution_release }} main
+          deb
+          [arch=amd64,arm64 signed-by={{ apptainer_apt_keyfile }}]
+          {{ apptainer_apt_url }}
+          {{ ansible_distribution_release }}
+          main
         filename: "apptainer"
         state: present
       register: _apt_repo
