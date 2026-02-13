@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/de-it-krachten/ansible-role-apptainer/compare/v1.3.0...v1.3.1) (2026-02-13)
+
+
+### Bug Fixes
+
+* Use /etc/apt/trusted.gpg.d ([7584a72](https://github.com/de-it-krachten/ansible-role-apptainer/commit/7584a725262c9cc36a6e2ab6ba3db195ec4da025))
+
 # [1.3.0](https://github.com/de-it-krachten/ansible-role-apptainer/compare/v1.2.0...v1.3.0) (2025-08-06)
 
 
