@@ -10,27 +10,15 @@ generic:
 
 # Supported platforms
 platforms:
-  sles15:
-    ci: false
-    supported: false
-  opensuse15:
-    ci: false
-    supported: false
-  opensusetumbleweed15:
-    ci: false
-    supported: false
-  debian10:
-    ci: false
-    supported: false
   debian11:
-    ci: false
     supported: false
+    ci: false
   debian12:
-    ci: false
     supported: false
+    ci: false
   debian13:
-    ci: false
     supported: false
+    ci: false
 
 # Molecule
 molecule:
