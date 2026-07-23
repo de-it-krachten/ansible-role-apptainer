@@ -1,3 +1,18 @@
+# [1.4.0](https://github.com/de-it-krachten/ansible-role-apptainer/compare/v1.3.1...v1.4.0) (2026-07-23)
+
+
+### Bug Fixes
+
+* Standarize vars.yml ([a0b8ef0](https://github.com/de-it-krachten/ansible-role-apptainer/commit/a0b8ef023cfa4f05e4a3bb938dd45a38070c6b96))
+
+
+### Features
+
+* Add support for ansible-core 2.20+ ([67e68b1](https://github.com/de-it-krachten/ansible-role-apptainer/commit/67e68b186b8664c34fef90224b62d2c2fe75dd38))
+* Added support for Fedora 44 ([4463233](https://github.com/de-it-krachten/ansible-role-apptainer/commit/44632331e11e05a01db4fa92e116a784a137196f))
+* Added support for Ubuntu 26.04 LTS ([75ebdba](https://github.com/de-it-krachten/ansible-role-apptainer/commit/75ebdba60ebe1fb1aacd141c2944097061ea8e52))
+* Drop support for Fedora 42 ([78d72e2](https://github.com/de-it-krachten/ansible-role-apptainer/commit/78d72e245f8227803337048039f0dfd0b0c1ac30))
+
 ## [1.3.1](https://github.com/de-it-krachten/ansible-role-apptainer/compare/v1.3.0...v1.3.1) (2026-02-13)
 
 
