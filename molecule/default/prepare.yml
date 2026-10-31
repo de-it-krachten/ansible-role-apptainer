@@ -147,6 +147,22 @@
     - deitkrachten.showinfo
   tasks:
 
+    - name: Make /etc/hosts writable in docker container
+      ansible.builtin.shell: |
+        set -o pipefail
+        mount=$(mount | grep -q /etc/hosts ; echo $?)
+        df=$(df | grep -q /etc/hosts ; echo $?)
+        if [[ $mount -eq 0 || $df -eq 0 ]]
+        then
+          cp /etc/hosts /tmp/hosts
+          umount /etc/hosts
+          cp /tmp/hosts /etc/hosts
+        fi
+      args:
+        executable: /bin/bash
+      changed_when: false
+      when: molecule_driver == 'docker'
+
     - name: Reset vagrant passwords
       when:
         - molecule_driver == 'vagrant'
